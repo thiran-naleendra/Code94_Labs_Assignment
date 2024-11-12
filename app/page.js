@@ -5,9 +5,10 @@ import User from "./User/page";
 export default function Home() {
   return (
     <>
+      <User/>
       <Login />
       <Dashboard/>
-      <User/>
     </>
   );
 }
+ 

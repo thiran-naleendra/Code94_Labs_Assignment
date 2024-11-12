@@ -11,7 +11,7 @@ export function authMiddleware(req, res, next) {
     const [email, password] = credentials.split(":");
   
     if (email === "admin@admin.com" && password === "admin123") {
-      next(); // Authentication successful, proceed to next middleware or route handler
+      next(); // Authentication successful
     } else {
       res.status(401).json({ message: "Invalid credentials" });
     }

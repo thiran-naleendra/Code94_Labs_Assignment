@@ -18,11 +18,10 @@ function SubmitJoke() {
       if (!response.ok) throw new Error('Failed to fetch jokes');
       const data = await response.json();
       
-      // Filter for approved jokes and pick a random one
       const approvedJokes = data.filter(joke => joke.status === 'approved');
       if (approvedJokes.length > 0) {
         const randomJoke = approvedJokes[Math.floor(Math.random() * approvedJokes.length)];
-        setApprovedJokes([randomJoke]); // Display only the selected random joke
+        setApprovedJokes([randomJoke]);
       } else {
         setApprovedJokes([]);
       }
@@ -31,7 +30,6 @@ function SubmitJoke() {
     }
   };
 
-  // Fetch a random approved joke on component mount
   useEffect(() => {
     fetchRandomApprovedJoke();
   }, []);
@@ -57,16 +55,31 @@ function SubmitJoke() {
       setMessage('Joke submitted successfully!');
       setType('');
       setContent('');
-      fetchRandomApprovedJoke(); // Refresh with a new random approved joke
+      fetchRandomApprovedJoke();
     } catch (err) {
       setError(err.message || 'Something went wrong');
     }
   };
 
+  // login page
+  const handleLoginRedirect = () => {
+    router.push('/login');
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 relative">
+      
+      {/* Login  */}
+      <button
+        onClick={handleLoginRedirect}
+        className="absolute top-6 right-6 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
+      >
+        Login
+      </button>
+
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Submit Joke Form */}
+        
+        {/* Submit Joke  */}
         <div>
           <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Submit a Joke</h1>
           
@@ -107,9 +120,9 @@ function SubmitJoke() {
           </form>
         </div>
 
-        {/* Approved Jokes Section */}
+        {/* Approved Jokes  */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Random Approved Joke</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Random Joke !</h2>
           
           {approvedJokes.length > 0 ? (
             <ul className="space-y-4">

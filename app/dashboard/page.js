@@ -15,7 +15,7 @@ function Dashboard() {
   // Function to handle logout
   const handleLogout = () => {
     localStorage.removeItem("authToken"); // Adjust this based on how you're storing tokens
-    router.push("/login"); // Redirect to login page after logout
+    router.push("/User"); // Redirect to login page after logout
   };
 
   // Function to fetch jokes from the API
