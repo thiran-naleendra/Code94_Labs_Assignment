@@ -11,12 +11,13 @@ function Page() {
   const router = useRouter();
 
   const handleLogin = async (event) => {
+    
     event.preventDefault();
     setError(null);
     setMessage(null);
-
+    
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
+       const response = await fetch('http://localhost:3000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
