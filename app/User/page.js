@@ -69,7 +69,7 @@ function SubmitJoke() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 relative">
       
-      {/* Login  */}
+      {/* Login Button */}
       <button
         onClick={handleLoginRedirect}
         className="absolute top-6 right-6 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
@@ -77,10 +77,10 @@ function SubmitJoke() {
         Login
       </button>
 
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="flex justify-center gap-16 max-w-6xl mx-auto">
         
-        {/* Submit Joke  */}
-        <div>
+        {/* Submit Joke Tile */}
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Submit a Joke</h1>
           
           {message && <p className="text-green-600 mb-4">{message}</p>}
@@ -93,7 +93,7 @@ function SubmitJoke() {
                 type="text"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-800 text-gray-800"
                 placeholder="Enter joke type (e.g., Knock-knock)"
                 required
               />
@@ -104,7 +104,7 @@ function SubmitJoke() {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-500 text-gray-800"
                 placeholder="Enter the joke content"
                 rows={4}
                 required
@@ -120,9 +120,9 @@ function SubmitJoke() {
           </form>
         </div>
 
-        {/* Approved Jokes  */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Random Joke !</h2>
+        {/* Random Approved Joke Tile */}
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Random Joke!</h2>
           
           {approvedJokes.length > 0 ? (
             <ul className="space-y-4">
