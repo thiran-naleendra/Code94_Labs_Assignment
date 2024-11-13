@@ -23,8 +23,9 @@ function Dashboard() {
 
   const handleViewJokes = async () => {
     setError(null);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch('http://localhost:3000/api/moderateJokes/viewJokes');
+      const response = await fetch(`${apiUrl}/api/moderateJokes/viewJokes` );
       if (!response.ok) throw new Error('Failed to fetch jokes');
       const data = await response.json();
       setJokes(data);
@@ -38,8 +39,9 @@ function Dashboard() {
   }, []);
 
   const handleEditJoke = async () => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch(`http://localhost:3000/api/moderateJokes/editJokes?id=${selectedJokeId}`, {
+      const response = await fetch(`${apiUrl}/api/moderateJokes/editJokes?id=${selectedJokeId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: editType, content: editContent, status: editStatus }),
@@ -57,8 +59,9 @@ function Dashboard() {
   };
 
   const handleDeleteJoke = async (jokeId) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch(`http://localhost:3000/api/moderateJokes/deleteJokes?id=${jokeId}&action=reject`, {
+      const response = await fetch(`${apiUrl}/api/moderateJokes/deleteJokes?id=${jokeId}&action=reject`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -75,8 +78,9 @@ function Dashboard() {
     e.preventDefault();
     setAddError("");
     setAddMessage("");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch('http://localhost:3000/api/moderateJokes/addJoke', {
+      const response = await fetch(`${apiUrl}/api/moderateJokes/addJoke`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: addType, content: addContent, status: "unmoderated" }),

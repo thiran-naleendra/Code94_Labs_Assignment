@@ -10,11 +10,12 @@ function SubmitJoke() {
   const [error, setError] = useState('');
   const [approvedJokes, setApprovedJokes] = useState([]);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Fetch a random approved joke
   const fetchRandomApprovedJoke = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/deliverJokes');
+      const response = await fetch(`${apiUrl}/api/deliverJokes`);
       if (!response.ok) throw new Error('Failed to fetch jokes');
       const data = await response.json();
       
@@ -40,7 +41,7 @@ function SubmitJoke() {
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/deliverJokes', {
+      const response = await fetch(`${apiUrl}/api/deliverJokes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
